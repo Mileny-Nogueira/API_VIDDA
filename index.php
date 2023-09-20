@@ -1,7 +1,8 @@
 <?php
 
     include 'PacientesService.php';
-   
+    include 'EspecialistasService.php';
+    
     header("Content-Type: application/json; charset=UTF-8");     
    
    

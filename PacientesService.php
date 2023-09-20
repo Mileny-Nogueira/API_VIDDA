@@ -1,8 +1,8 @@
 <?php
     // Arquivo que mostra todos os serviços oferecidos pela API  
     include 'Pacientes.php'; 
-    class PacientesService 
-    {
+
+    class PacientesService {
           //Método get para buscar os dados com ou sem parâmetro
           public function get( $id = null )
           {
@@ -62,3 +62,4 @@
               
           }
    }
+    

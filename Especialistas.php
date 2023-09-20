@@ -9,9 +9,8 @@
        4) Alterar os dados no Banco de Dados */
       
       //inserir o arquivo 'config.php'
-      require_once 'config.especialistas.php' ; // ou include 'config.php'
+      require_once 'config.php' ; // ou include 'config.php'
       
-      /* Criamos uma class chama "Alunos"  */
       class Especialistas 
       {
         //1) um método para fazer consulta atráves do parâmetro $id

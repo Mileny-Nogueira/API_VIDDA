@@ -2,6 +2,7 @@
 
     include 'PacientesService.php';
     include 'EspecialistasService.php';
+    include 'ConsultasService.php';
     include 'PrescricaoService.php';
     
     header("Content-Type: application/json; charset=UTF-8");     

@@ -58,7 +58,7 @@
                   
               }
 
-              return Pacientes::delete( $id );   
+              return Prescricao::delete( $id );   
               
           }
    }

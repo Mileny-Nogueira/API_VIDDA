@@ -3,10 +3,10 @@
       
       class Pacientes 
       {
-        public static function select(int $id)
+        public static function select($id)
         {
             $tabela = "tb_paciente"; 
-            $coluna = "id_paciente";
+            $coluna = "email_paciente";
             
             $connPdo = new PDO(dbDrive.':host='.dbHost.'; dbname='.dbName, dbUser, dbPass);
             
@@ -46,20 +46,20 @@
             }
         }
 
-        public static function insert($dados)
-        {            
+        public static function insert($dados){            
            $tabela = "tb_paciente";
        
            $connPdo = new PDO(dbDrive.':host='.dbHost.'; dbname='.dbName, dbUser, dbPass);
-           $sql = "insert into $tabela (nome_paciente, cpf_paciente, sexo_paciente, data_nascimento_paciente, email_paciente, nome_responsavel_paciente) values (:nome, :cpf, :sexo, :data, :email, :resp)";
+           $sql = "insert into $tabela (nome_paciente, sexo_paciente, email_paciente, telefone_paciente, senha_paciente, data_nascimento_paciente, cpf_paciente) values (:nome, :sexo, :email, :celular, :senha, :data, :cpf)";
            $stmt = $connPdo->prepare($sql);
 
            $stmt->bindValue(':nome', $dados['nome_paciente']);
-           $stmt->bindValue(':cpf' , $dados['cpf_paciente']);
            $stmt->bindValue(':sexo' , $dados['sexo_paciente']);
-           $stmt->bindValue(':data' , $dados['data_nascimento_paciente']);
            $stmt->bindValue(':email' , $dados['email_paciente']);
-           $stmt->bindValue(':resp' , $dados['nome_responsavel_paciente']);
+           $stmt->bindValue(':celular' , $dados['telefone_paciente']);
+           $stmt->bindValue(':senha' , $dados['senha_paciente']);
+           $stmt->bindValue(':data' , $dados['data_nascimento_paciente']);
+           $stmt->bindValue(':cpf' , $dados['cpf_paciente']);           
            $stmt->execute() ;
 
            if ($stmt->rowCount() > 0)
@@ -79,15 +79,16 @@
             $coluna = "id_paciente";
             
             $connPdo = new PDO(dbDrive.':host='.dbHost.'; dbname='.dbName, dbUser, dbPass);
-            $sql = "update $tabela  set nome_paciente=:nome, cpf_paciente=:cpf, sexo_paciente=:sexo, data_nascimento_paciente=:data, email_paciente=:email, nome_responsavel_paciente=:resp where $coluna = :id" ;
+            $sql = "update $tabela  set nome_paciente=:nome, cpf_paciente=:cpf, sexo_paciente=:sexo, data_nascimento_paciente=:data, senha_paciente=:senha, email_paciente=:email, telefone_paciente=:celular where $coluna = :id" ;
             $stmt = $connPdo->prepare($sql);
             $stmt->bindValue(':id' , $id) ;
             $stmt->bindValue(':nome' , $dados['nome_paciente']);
             $stmt->bindValue(':cpf' , $dados['cpf_paciente']);
             $stmt->bindValue(':sexo' , $dados['sexo_paciente']) ; 
-            $stmt->bindValue(':data' , $dados['data_nascimento_paciente']);     
-            $stmt->bindValue(':email' , $dados['email_paciente']);   
-            $stmt->bindValue(':resp' , $dados['nome_responsavel_paciente']);         
+            $stmt->bindValue(':data' , $dados['data_nascimento_paciente']); 
+            $stmt->bindValue(':senha' , $dados['senha_paciente']);    
+            $stmt->bindValue(':email' , $dados['email_paciente']); 
+            $stmt->bindValue(':celular' , $dados['telefone_paciente']);          
             $stmt->execute() ;
 
             if ($stmt->rowCount() > 0)

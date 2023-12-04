@@ -2,7 +2,6 @@
 require_once 'config.php';
 class Loginespecialistas
 {
-    //Criamos uma função para verificar ou avalidar login e senha
     public static function verificarLogin($dados){
         $tabela = "tb_login_especialista";
         $colunaLogin = "email_login_especialista";

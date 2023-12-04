@@ -1,9 +1,9 @@
 <?php
-    // Arquivo que mostra todos os serviços oferecidos pela API  
+   
     include 'Prescricao.php'; 
 
     class PrescricaoService {
-          //Método get para buscar os dados com ou sem parâmetro
+    
           public function get( $id = null )
           {
               if ($id){           
@@ -16,7 +16,7 @@
 
               }
           }
-          //Método post para inserir os dados
+     
           public function post()
           {        
              $dados = json_decode(file_get_contents('php://input'), true, 512);
@@ -30,7 +30,7 @@
 
           }
 
-          //Método put para alterar os dados
+      
           public function put($id = null)          
           {
               if ($id == null ){
@@ -49,7 +49,7 @@
               return Prescricao::alterar($id, $dados);  
 
           }
-          //Método delete para excluir os dados
+        
           public function delete($id = null)
           {
               if($id == null ){

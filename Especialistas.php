@@ -1,8 +1,7 @@
 <?php
       require_once 'config.php' ;
       
-      class Especialistas 
-      {
+      class Especialistas {
         public static function select($id)
         {
             $tabela = "tb_especialista";
@@ -49,7 +48,6 @@
 
         }
         
-        //3) Um método para inserir os dados para BD
         public static function insert($dados)
          {            
             $tabela = "tb_especialista";

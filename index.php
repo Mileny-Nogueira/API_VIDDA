@@ -4,8 +4,15 @@
     include 'EspecialistasService.php';
     include 'ConsultasService.php';
     include 'PrescricaoService.php';
+    include 'LoginespecialistasService.php';
+    include 'LoginpacientesService.php';
     
-    header("Content-Type: application/json; charset=UTF-8");     
+    header("Content-Type: application/json; charset=UTF-8");  
+    header("Access-Control-Allow-Origin: *"); 
+    header("Access-Control-Allow-Methods: GET,POST,PUT,DELETE");
+    header("Access-Control: no-cache, no-store, must-revalidate");
+    header("Access-Control-Allow-Headers: *");
+    header("Access-Control-Max-Age: 86400");   
    
    
     if ($_GET['url']){

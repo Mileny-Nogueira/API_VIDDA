@@ -14,11 +14,11 @@
       class Especialistas 
       {
         //1) um método para fazer consulta atráves do parâmetro $id
-        public static function select(int $id)
+        public static function select($id)
         {
             //Criar duas variáveis para tabela e primeira coluna
             $tabela = "tb_especialista"; //variável para nome da tabela
-            $coluna = "id_especialista"; //variável para chave primaria
+            $coluna = "email_especialista"; //variável para chave primaria
             
             // Conectando com o banco de dados através da classe (objeto) PDO
             // pegando as informações do config.php (variáveis globais)
@@ -83,16 +83,32 @@
             //Conectar BD
             $connPdo = new PDO(dbDrive.':host='.dbHost.'; dbname='.dbName, dbUser, dbPass);
             //Comando SQL
-            $sql = "insert into $tabela (cpf_especialista,nome_especialista,registro_especialista,sexo_especialista) 
-            values (:cpf_especialista, :nome_especialista, :registro_especialista, :sexo_especialista)"  ;
+            $sql = "insert into $tabela 
+            (nome_especialista, 
+            sexo_especialista, 
+            email_especialista, 
+            especialidade_especialista, 
+            registro_especialista, 
+            senha_especialista, 
+            cpf_especialista) 
+            values 
+            (:nome_especialista, 
+            :sexo_especialista, 
+            :email_especialista, 
+            :especialidade_especialista, 
+            :registro_especialista, 
+            :senha_especialista, 
+            :cpf_especialista)";
             //Preparando o comando SQL
             $stmt = $connPdo->prepare($sql);
             //Mapeando os parâmetros com campos do BD
+            $stmt->bindValue(':nome_especialista', $dados['nome_especialista']);
+            $stmt->bindValue(':sexo_especialista', $dados['sexo_especialista']);
+            $stmt->bindValue(':email_especialista', $dados['email_especialista']);
+            $stmt->bindValue(':especialidade_especialista', $dados['especialidade_especialista']);
+            $stmt->bindValue(':registro_especialista', $dados['registro_especialista']);
+            $stmt->bindValue(':senha_especialista', $dados['senha_especialista']);
             $stmt->bindValue(':cpf_especialista', $dados['cpf_especialista']);
-            $stmt->bindValue(':nome_especialista' , $dados['nome_especialista']);
-            $stmt->bindValue(':registro_especialista' , $dados['registro_especialista']);
-            $stmt->bindValue(':sexo_especialista' , $dados['sexo_especialista']);
-            //Executar
             $stmt->execute() ;
 
             if ($stmt->rowCount() > 0)
@@ -110,16 +126,24 @@
             
             $connPdo = new PDO(dbDrive.':host='.dbHost.'; dbname='.dbName, dbUser, dbPass);
             $sql = "update $tabela  set 
-            cpf_especialista=:cpf_especialista, 
             nome_especialista=:nome_especialista, 
+            sexo_especialista=:sexo_especialista,
+            email_especialista=:email_especialista,
+            especialidade_especialista=:especialidade_especialista,
             registro_especialista=:registro_especialista,
-            sexo_especialista=:sexo_especialista where $coluna = :id"  ;
+            senha_especialista=:senha_especialista,
+            cpf_especialista=:cpf_especialista
+            where $coluna = :id";
+
             $stmt = $connPdo->prepare($sql);
             $stmt->bindValue(':id' , $id) ;
-            $stmt->bindValue(':cpf_especialista' , $dados['cpf_especialista']) ;
-            $stmt->bindValue(':nome_especialista' , $dados['nome_especialista']) ;
-            $stmt->bindValue(':registro_especialista' , $dados['registro_especialista']) ;            
-            $stmt->bindValue(':sexo_especialista' , $dados['sexo_especialista']) ;
+            $stmt->bindValue(':nome_especialista', $dados['nome_especialista']);
+            $stmt->bindValue(':sexo_especialista', $dados['sexo_especialista']);
+            $stmt->bindValue(':email_especialista', $dados['email_especialista']);
+            $stmt->bindValue(':especialidade_especialista', $dados['especialidade_especialista']);
+            $stmt->bindValue(':registro_especialista', $dados['registro_especialista']);
+            $stmt->bindValue(':senha_especialista', $dados['senha_especialista']);
+            $stmt->bindValue(':cpf_especialista', $dados['cpf_especialista']);
             $stmt->execute() ;
 
             if ($stmt->rowCount() > 0)

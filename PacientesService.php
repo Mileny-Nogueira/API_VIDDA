@@ -4,31 +4,29 @@
 
     class PacientesService {
           //Método get para buscar os dados com ou sem parâmetro
-          public function get( $id = null )
-          {
-              if ($id){           
+        public function get( $id = null ){
+            if ($id){           
 
-                 return Pacientes::select($id);
+                return Pacientes::select($id);
 
-              }else{
+            }else{
 
-                 return Pacientes::selectAll();
+                return Pacientes::selectAll();
 
-              }
-          }
+            }
+        }
           //Método post para inserir os dados
-          public function post()
-          {        
-             $dados = json_decode(file_get_contents('php://input'), true, 512);
-             if ($dados == null) {
+        public function post(){        
+            $dados = json_decode(file_get_contents('php://input'), true, 512);
+            if ($dados == null) {
 
-                 throw new Exception("Faltou as informações para incluir");
+                throw new Exception("Faltou as informações");
 
-             }         
-
-             return Pacientes::insert($dados);
-
-          }
+            }else{
+                return Pacientes::insert($dados);
+                return Pacientes::verificarLogin($dadosLogin);
+            }      
+        }
 
           //Método put para alterar os dados
           public function put($id = null)          
